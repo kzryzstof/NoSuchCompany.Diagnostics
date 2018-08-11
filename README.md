@@ -1,0 +1,1 @@
+# NoSuchCompany.Diagnostics
