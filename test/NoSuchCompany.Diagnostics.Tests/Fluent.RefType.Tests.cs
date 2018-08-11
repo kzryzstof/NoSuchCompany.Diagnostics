@@ -7,7 +7,7 @@ namespace NoSuchCompany.Diagnostics.Tests
     public class FluentRefTypeTests
     {
         [Fact]
-        public void ThrowIfNull_InstIsNull_ArgumentNullExceptionThrown()
+        public void ThrowIfIsNull_InstIsNull_ArgumentNullExceptionThrown()
         {
             Exception exception = null;
 
