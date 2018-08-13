@@ -1,9 +1,9 @@
-// ==========================================================================
+﻿// ==========================================================================
 // Copyright (C) 2018 by NoSuch Company.
 // All rights reserved.
 // May be used only in accordance with a valid Source Code License Agreement.
 // 
-// Last change: 13/08/2018 @ 5:13 PM
+// Last change: 13/08/2018 @ 5:31 PM
 // Last author: Christophe Commeyne
 // ==========================================================================
 
@@ -14,7 +14,7 @@ namespace NoSuchCompany.Diagnostics
     #region Class
 
     /// <summary>
-    /// Provides checks for the <see cref="string"/> types.
+    /// Provides checks for the <see cref="Guid" /> type.
     /// </summary>
     public static partial class Argument
     {
@@ -22,14 +22,14 @@ namespace NoSuchCompany.Diagnostics
 
         /// <param name="inst">Inst.</param>
         /// <param name="instName">Inst name.</param>
-        /// <exception cref="ArgumentNullException">
+        /// <exception cref="ArgumentException">
         /// Thrown if :
-        /// <paramref name="inst" /> is either null or is an empty string with blank characters.
+        /// <paramref name="inst" /> is empty.
         /// </exception>
-        public static void ThrowIfIsNullOrWhiteSpace(string inst, string instName)
+        public static void ThrowIfIsEmpty(Guid inst, string instName)
         {
-            if (string.IsNullOrWhiteSpace(inst))
-                throw new ArgumentNullException(instName, $"{instName} is not allowed to be null or empty.");
+            if (inst == Guid.Empty)
+                throw new ArgumentException(instName, $"{instName} is empty.");
         }
 
         #endregion

@@ -3,7 +3,7 @@
 // All rights reserved.
 // May be used only in accordance with a valid Source Code License Agreement.
 // 
-// Last change: 13/08/2018 @ 5:15 PM
+// Last change: 13/08/2018 @ 5:37 PM
 // Last author: Christophe Commeyne
 // ==========================================================================
 
@@ -14,7 +14,7 @@ namespace NoSuchCompany.Diagnostics
     #region Class
 
     /// <summary>
-    /// Provides checks for the <see cref="DateTime" /> type.
+    /// Provides checks for the <see cref="Guid" /> type.
     /// </summary>
     public static partial class Fluent
     {
@@ -24,24 +24,11 @@ namespace NoSuchCompany.Diagnostics
         /// <param name="instName">Inst name.</param>
         /// <exception cref="ArgumentException">
         /// Thrown if :
-        /// <paramref name="inst" /> is not specified in a local time zone.
+        /// <paramref name="inst" /> is empty.
         /// </exception>
-        public static DateTime ThrowIfIsNotLocal(this DateTime inst, string instName)
+        public static Guid ThrowIfIsEmpty(this Guid inst, string instName)
         {
-            Argument.ThrowIfIsNotLocal(inst, instName);
-
-            return inst;
-        }
-
-        /// <param name="inst">Inst.</param>
-        /// <param name="instName">Inst name.</param>
-        /// <exception cref="ArgumentException">
-        /// Thrown if :
-        /// <paramref name="inst" /> is not specified in the UTC time zone.
-        /// </exception>
-        public static DateTime ThrowIfIsNotUtc(this DateTime inst, string instName)
-        {
-            Argument.ThrowIfIsNotUtc(inst, instName);
+            Argument.ThrowIfIsEmpty(inst, instName);
 
             return inst;
         }

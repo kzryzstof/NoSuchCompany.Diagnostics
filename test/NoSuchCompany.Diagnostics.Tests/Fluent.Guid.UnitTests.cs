@@ -3,7 +3,7 @@
 // All rights reserved.
 // May be used only in accordance with a valid Source Code License Agreement.
 // 
-// Last change: 13/08/2018 @ 5:19 PM
+// Last change: 13/08/2018 @ 5:46 PM
 // Last author: Christophe Commeyne
 // ==========================================================================
 
@@ -14,16 +14,20 @@ namespace NoSuchCompany.Diagnostics.Tests
 {
     #region Class
 
-    public class FluentRefTypeTests
+    public class FluentGuidTests
     {
         #region Public Methods
 
         [Fact]
-        public void ThrowIfIsNull_InstIsNull_ArgumentNullExceptionThrown()
+        public void ThrowIfIsEmpty_GuidIsEmpty_ArgumentExceptionThrown()
         {
-            Exception exception = null;
+            Assert.Throws<ArgumentException>(() => Guid.Empty.ThrowIfIsEmpty("instName"));
+        }
 
-            Assert.Throws<ArgumentNullException>(() => exception.ThrowIfIsNull("instName"));
+        [Fact]
+        public void ThrowIfIsEmpty_GuidIsNotEmpty_NoExceptionThrown()
+        {
+            Guid.NewGuid().ThrowIfIsEmpty("instName");
         }
 
         #endregion
