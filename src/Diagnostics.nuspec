@@ -11,7 +11,7 @@
 		<releaseNotes></releaseNotes>
     <copyright>Copyright 2018 (c) NoSuch Company. All rights reserved.</copyright>
     <tags>Guard Argument Diagnostics Null </tags>
-		<iconUrl>https://github.com/kzryzstof/NoSuchCompany.Diagnostics/raw/master/NoSuchCompany.png</iconUrl>
+		<iconUrl>https://raw.githubusercontent.com/kzryzstof/NoSuchCompany.Diagnostics/master/raw/NoSuchCompany.png</iconUrl>
 		<dependencies></dependencies>
   </metadata>
 	<files>
