@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-		<id>NoSuchCompany.Diagnostics</id>
+		<id>NoSuchCompany.Diagnostics.Argument</id>
 		<version>$version$</version>
 		<title>NoSuch Company Diagnostics Library</title>
 		<authors>NoSuch Company</authors>
@@ -10,10 +10,9 @@
 		<description>The Diagnostics library provides classes that help checking incoming parameters of a method using the Fluent API or not, depending on what you like.</description>
 		<releaseNotes></releaseNotes>
     <copyright>Copyright 2018 (c) NoSuch Company. All rights reserved.</copyright>
-    <tags>Guards Diagnostics Argument</tags>
+    <tags>Guard Argument Diagnostics Null </tags>
 		<dependencies></dependencies>
   </metadata>
-	<files>
 		<file src="NoSuchCompany.Diagnostics\bin\Release\netstandard2.0\NoSuchCompany.Diagnostics.dll" target="lib\netstandard2.0\NoSuchCompany.Diagnostics.dll" />
 	</files>
 </package>
