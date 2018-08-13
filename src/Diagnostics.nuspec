@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-		<id>NoSuchCompany.Diagnostics.Argument</id>
+		<id>NoSuchCompany.Diagnostics.Guards</id>
 		<version>$version$</version>
 		<title>NoSuch Company Diagnostics Library</title>
 		<authors>NoSuch Company</authors>
