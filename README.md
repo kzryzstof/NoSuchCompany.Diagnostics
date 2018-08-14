@@ -37,7 +37,7 @@ namespace Application
 }
 ```
 
-3. Or use the Fluent approach
+3. Or use the Fluent approach:
 
 ```csharp
 using NoSuchCompany.Diagnostics.Guards;
@@ -49,7 +49,7 @@ namespace Application
         public SomeClass(string name, Datetime timestampUtc, Socket someSocket)
         {
             name.ThrowIfIsEmpty(nameof(name));
-            timestampUtcThrowIfIsNotUtc(nameof(timestampUtc));
+            timestampUtc.ThrowIfIsNotUtc(nameof(timestampUtc));
             someSocket.ThrowIfIsNull(nameof(someSocket));
             
             //  ...            
