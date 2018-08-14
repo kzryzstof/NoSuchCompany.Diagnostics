@@ -1,5 +1,7 @@
 # NoSuchCompany.Diagnostics.Guards #
 
+[![Build status](https://nosuchcompany.visualstudio.com/NoSuchCompany.Diagnostics/_apis/build/status/NoSuchCompany.Diagnostics-master?branch=master)](https://nosuchcompany.visualstudio.com/NoSuchCompany.Diagnostics/_build/latest?definitionId=13&branch=master)]
+
 The Diagnostics library provides simple and light classes that help checking incoming parameters of a method using the Fluent API or not, depending on what you prefer.
 
 The library is provided as a .netstandard2.0 DLL so that it can be used in .NET Framework projects (4.6.1) as well as in .NET Core applications. The choice is yours.
