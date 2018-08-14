@@ -1,4 +1,4 @@
-// ==========================================================================
+﻿// ==========================================================================
 // Copyright (C) 2018 by NoSuch Company.
 // All rights reserved.
 // May be used only in accordance with a valid Source Code License Agreement.
@@ -14,7 +14,7 @@ namespace NoSuchCompany.Diagnostics.Tests
 {
     #region Class
 
-    public class ArgumentValueTypeTests
+    public class FluentValueType
     {
         #region Public Methods
 
@@ -25,7 +25,7 @@ namespace NoSuchCompany.Diagnostics.Tests
         [InlineData(double.MaxValue, double.MinValue)]
         public void ThrowIfIsLessThan_DoubleInstIsGreaterThanLowerBound_NoExceptionThrown(double inst, double lowerBound)
         {
-            Argument.ThrowIfIsLessThan(inst, lowerBound, "instName");
+            inst.ThrowIfIsLessThan(lowerBound, "instName");
         }
 
         [Theory]
@@ -35,7 +35,7 @@ namespace NoSuchCompany.Diagnostics.Tests
         [InlineData(double.MinValue, double.MaxValue)]
         public void ThrowIfIsLessThan_DoubleInstIsLessThanLowerBound_ArgumentOutOfRangeExceptionThrown(double inst, double lowerBound)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsLessThan(inst, lowerBound, "instName"));
+            Assert.Throws<ArgumentOutOfRangeException>(() => inst.ThrowIfIsLessThan(lowerBound, "instName"));
         }
 
         [Theory]
@@ -45,7 +45,7 @@ namespace NoSuchCompany.Diagnostics.Tests
         [InlineData(float.MaxValue, float.MinValue)]
         public void ThrowIfIsLessThan_FloatInstIsGreaterThanLowerBound_NoExceptionThrown(float inst, float lowerBound)
         {
-            Argument.ThrowIfIsLessThan(inst, lowerBound, "instName");
+            inst.ThrowIfIsLessThan(lowerBound, "instName");
         }
 
         [Theory]
@@ -55,7 +55,7 @@ namespace NoSuchCompany.Diagnostics.Tests
         [InlineData(float.MinValue, float.MaxValue)]
         public void ThrowIfIsLessThan_FloatInstIsLessThanLowerBound_ArgumentOutOfRangeExceptionThrown(float inst, float lowerBound)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsLessThan(inst, lowerBound, "instName"));
+            Assert.Throws<ArgumentOutOfRangeException>(() => inst.ThrowIfIsLessThan(lowerBound, "instName"));
         }
 
         [Theory]
@@ -64,7 +64,7 @@ namespace NoSuchCompany.Diagnostics.Tests
         [InlineData(int.MaxValue, int.MinValue)]
         public void ThrowIfIsLessThan_IntInstIsGreaterThanLowerBound_NoExceptionThrown(int inst, int lowerBound)
         {
-            Argument.ThrowIfIsLessThan(inst, lowerBound, "instName");
+            inst.ThrowIfIsLessThan(lowerBound, "instName");
         }
 
         [Theory]
@@ -73,7 +73,7 @@ namespace NoSuchCompany.Diagnostics.Tests
         [InlineData(int.MinValue, int.MaxValue)]
         public void ThrowIfIsLessThan_IntInstIsLessThanLowerBound_ArgumentOutOfRangeExceptionThrown(int inst, int lowerBound)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsLessThan(inst, lowerBound, "instName"));
+            Assert.Throws<ArgumentOutOfRangeException>(() => inst.ThrowIfIsLessThan(lowerBound, "instName"));
         }
 
         [Theory]
@@ -82,7 +82,7 @@ namespace NoSuchCompany.Diagnostics.Tests
         [InlineData(long.MaxValue, long.MinValue)]
         public void ThrowIfIsLessThan_LongInstIsGreaterThanLowerBound_NoExceptionThrown(long inst, long lowerBound)
         {
-            Argument.ThrowIfIsLessThan(inst, lowerBound, "instName");
+            inst.ThrowIfIsLessThan(lowerBound, "instName");
         }
 
         [Theory]
@@ -91,7 +91,7 @@ namespace NoSuchCompany.Diagnostics.Tests
         [InlineData(long.MinValue, long.MaxValue)]
         public void ThrowIfIsLessThan_LongInstIsLessThanLowerBound_ArgumentOutOfRangeExceptionThrown(long inst, long lowerBound)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsLessThan(inst, lowerBound, "instName"));
+            Assert.Throws<ArgumentOutOfRangeException>(() => inst.ThrowIfIsLessThan(lowerBound, "instName"));
         }
 
         [Theory]
@@ -100,7 +100,7 @@ namespace NoSuchCompany.Diagnostics.Tests
         [InlineData(short.MaxValue, short.MinValue)]
         public void ThrowIfIsLessThan_ShortInstIsGreaterThanLowerBound_NoExceptionThrown(short inst, short lowerBound)
         {
-            Argument.ThrowIfIsLessThan(inst, lowerBound, "instName");
+            inst.ThrowIfIsLessThan(lowerBound, "instName");
         }
 
         [Theory]
@@ -109,7 +109,7 @@ namespace NoSuchCompany.Diagnostics.Tests
         [InlineData(short.MinValue, short.MaxValue)]
         public void ThrowIfIsLessThan_ShortInstIsLessThanLowerBound_ArgumentOutOfRangeExceptionThrown(short inst, short lowerBound)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsLessThan(inst, lowerBound, "instName"));
+            Assert.Throws<ArgumentOutOfRangeException>(() => inst.ThrowIfIsLessThan(lowerBound, "instName"));
         }
 
         [Theory]
@@ -117,7 +117,7 @@ namespace NoSuchCompany.Diagnostics.Tests
         [InlineData(uint.MaxValue, uint.MinValue)]
         public void ThrowIfIsLessThan_UIntInstIsGreaterThanLowerBound_NoExceptionThrown(uint inst, uint lowerBound)
         {
-            Argument.ThrowIfIsLessThan(inst, lowerBound, "instName");
+            inst.ThrowIfIsLessThan(lowerBound, "instName");
         }
 
         [Theory]
@@ -125,7 +125,7 @@ namespace NoSuchCompany.Diagnostics.Tests
         [InlineData(uint.MinValue, uint.MaxValue)]
         public void ThrowIfIsLessThan_UIntInstIsLessThanLowerBound_ArgumentOutOfRangeExceptionThrown(uint inst, uint lowerBound)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsLessThan(inst, lowerBound, "instName"));
+            Assert.Throws<ArgumentOutOfRangeException>(() => inst.ThrowIfIsLessThan(lowerBound, "instName"));
         }
 
         [Theory]
@@ -133,7 +133,7 @@ namespace NoSuchCompany.Diagnostics.Tests
         [InlineData(ulong.MaxValue, ulong.MinValue)]
         public void ThrowIfIsLessThan_ULongInstIsGreaterThanLowerBound_NoExceptionThrown(ulong inst, ulong lowerBound)
         {
-            Argument.ThrowIfIsLessThan(inst, lowerBound, "instName");
+            inst.ThrowIfIsLessThan(lowerBound, "instName");
         }
 
         [Theory]
@@ -141,7 +141,7 @@ namespace NoSuchCompany.Diagnostics.Tests
         [InlineData(ulong.MinValue, ulong.MaxValue)]
         public void ThrowIfIsLessThan_ULongInstIsLessThanLowerBound_ArgumentOutOfRangeExceptionThrown(ulong inst, ulong lowerBound)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsLessThan(inst, lowerBound, "instName"));
+            Assert.Throws<ArgumentOutOfRangeException>(() => inst.ThrowIfIsLessThan(lowerBound, "instName"));
         }
 
         [Theory]
@@ -149,7 +149,7 @@ namespace NoSuchCompany.Diagnostics.Tests
         [InlineData(ushort.MaxValue, ushort.MinValue)]
         public void ThrowIfIsLessThan_UShortInstIsGreaterThanLowerBound_NoExceptionThrown(ushort inst, ushort lowerBound)
         {
-            Argument.ThrowIfIsLessThan(inst, lowerBound, "instName");
+            inst.ThrowIfIsLessThan(lowerBound, "instName");
         }
 
         [Theory]
@@ -157,7 +157,7 @@ namespace NoSuchCompany.Diagnostics.Tests
         [InlineData(ushort.MinValue, ushort.MaxValue)]
         public void ThrowIfIsLessThan_UShortInstIsLessThanLowerBound_ArgumentOutOfRangeExceptionThrown(ushort inst, ushort lowerBound)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsLessThan(inst, lowerBound, "instName"));
+            Assert.Throws<ArgumentOutOfRangeException>(() => inst.ThrowIfIsLessThan(lowerBound, "instName"));
         }
 
         #endregion
