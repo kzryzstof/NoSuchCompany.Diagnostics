@@ -1,6 +1,6 @@
 # NoSuchCompany.Diagnostics.Guards #
 
-[![Build status](https://nosuchcompany.visualstudio.com/NoSuchCompany.Diagnostics/_apis/build/status/NoSuchCompany.Diagnostics-master?branch=master)](https://nosuchcompany.visualstudio.com/NoSuchCompany.Diagnostics/_build/latest?definitionId=13&branch=master)]
+![Build status](https://nosuchcompany.visualstudio.com/NoSuchCompany.Diagnostics/_apis/build/status/NoSuchCompany.Diagnostics-master?branch=master)
 
 The Diagnostics library provides simple and light classes that help checking incoming parameters of a method using the Fluent API or not, depending on what you prefer.
 
@@ -37,7 +37,7 @@ namespace Application
 }
 ```
 
-3. Or use the Fluent approach
+3. Or use the Fluent approach:
 
 ```csharp
 using NoSuchCompany.Diagnostics.Guards;
@@ -49,7 +49,7 @@ namespace Application
         public SomeClass(string name, Datetime timestampUtc, Socket someSocket)
         {
             name.ThrowIfIsEmpty(nameof(name));
-            timestampUtcThrowIfIsNotUtc(nameof(timestampUtc));
+            timestampUtc.ThrowIfIsNotUtc(nameof(timestampUtc));
             someSocket.ThrowIfIsNull(nameof(someSocket));
             
             //  ...            
