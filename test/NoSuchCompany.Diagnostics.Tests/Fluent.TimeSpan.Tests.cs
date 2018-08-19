@@ -48,9 +48,9 @@ namespace NoSuchCompany.Diagnostics.Tests
 
         [Theory]
         [ClassData(typeof(TimeSpanData))]
-        public void ThrowIfIsLowerThan_InstIsLowerThanLowerBound_ArgumentExceptionThrown(TimeSpan inst, TimeSpan lowerBound)
+        public void ThrowIfIsLowerThan_InstIsLowerThanLowerBound_ArgumentOutOfRangeExceptionThrown(TimeSpan inst, TimeSpan lowerBound)
         {
-            Assert.Throws<ArgumentException>(() => inst.ThrowIfIsLowerThan(lowerBound, "instName"));
+            Assert.Throws<ArgumentOutOfRangeException>(() => inst.ThrowIfIsLowerThan(lowerBound, "instName"));
         }
 
         [Theory]
@@ -69,9 +69,9 @@ namespace NoSuchCompany.Diagnostics.Tests
 
         [Theory]
         [ClassData(typeof(TimeSpanData))]
-        public void ThrowIfIsGreaterThan_InstIsGreaterThanUpperBound_ArgumentExceptionThrown(TimeSpan upperBound, TimeSpan inst)
+        public void ThrowIfIsGreaterThan_InstIsGreaterThanUpperBound_ArgumentOutOfRangeExceptionThrown(TimeSpan upperBound, TimeSpan inst)
         {
-            Assert.Throws<ArgumentException>(() => inst.ThrowIfIsGreaterThan(upperBound, "instName"));
+            Assert.Throws<ArgumentOutOfRangeException>(() => inst.ThrowIfIsGreaterThan(upperBound, "instName"));
             
         }
     }
