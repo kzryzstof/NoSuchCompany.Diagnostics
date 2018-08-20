@@ -91,7 +91,7 @@ A lot of our applications are used by customers across several time zones. As su
 ```
 public void DoSomething(DateTime timestampUtc)
 {
-    Argument.ThrowIfIsNotUtc(timestampUtc, nameof(timestampUtc));   // Stop if timestampUtc is not a DateTime expressed in the UTC time zone.
+    Argument.ThrowIfIsNotLocal(timestampUtc, nameof(timestampUtc));   // Stop if timestampUtc is not a DateTime expressed in the UTC time zone.
 }
 ```
 
