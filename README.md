@@ -103,3 +103,14 @@ public void DoSomething(DateTime timestampLocal)
     Argument.ThrowIfIsNotUtc(timestampLocal nameof(timestampLocl));   // Stop if timestampLocal is not a DateTime expressed in a local time zone.
 }
 ```
+
+4. Strings
+
+In some cases, you may require string instances to have some value in it aside from an empty or white-spaced list of characters. Here is the check:
+
+```
+public void NotifyUser(string someImportantMsg)
+{
+    Argument.ThrowIfIsNullOrWhiteSpace(someImportantMsg nameof(someImportantMsg));   // Stop if we are not notifying anything to the user.
+}
+```
