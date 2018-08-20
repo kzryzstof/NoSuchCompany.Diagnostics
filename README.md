@@ -58,3 +58,48 @@ namespace Application
 }
 ```
 
+
+# Features #
+
+1. Reference types
+
+First, the API provides with a way to prevent ```null``` instances from creeping up your application. For example:
+
+```
+public void DoSomething(SomeReferenceType inst)
+{
+    Argument.ThrowIfIsNull(inst, nameof(inst));   // Stop if inst is bs.
+}
+```
+
+2. Guid
+
+We often use Guid as identifiers of entities. We always expect them to represent some entity somewhere in the system. Knowing that we create new entity and assign them a ```Guid.NewGuid()```, empty Guids are not expected and may be a sign of some bug. Hence the following check:
+
+```
+public void DoSomething(Guid entityId)
+{
+    Argument.ThrowIfIsEmpty(entityId, nameof(entityId));   // Stop if entityId is some bs instance.
+}
+```
+
+3. DateTime
+
+A lot of our applications are used by customers across several time zones. As such, our backend does not manipulate ```DateTime``` instances that are specified in the local time zone, but only with those specified in the UTC time zone. We let the front-end deal with the time zone. To avoid tricky bugs, we have the following check whenever needed:
+
+
+```
+public void DoSomething(DateTime timestampUtc)
+{
+    Argument.ThrowIfIsNotUtc(timestampUtc, nameof(timestampUtc));   // Stop if timestampUtc is not a DateTime expressed in the UTC time zone.
+}
+```
+
+The opposite can also be checked:
+
+```
+public void DoSomething(DateTime timestampLocal)
+{
+    Argument.ThrowIfIsNotUtc(timestampLocal nameof(timestampLocl));   // Stop if timestampLocal is not a DateTime expressed in a local time zone.
+}
+```
