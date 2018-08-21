@@ -5,7 +5,7 @@
     <LangVersion>latest</LangVersion>
     <SignAssembly>true</SignAssembly>
     <DelaySign>false</DelaySign>
-    <AssemblyOriginatorKeyFile>NoSuchCompany.Diagnostics.snk.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>NoSuchCompany.Diagnostics.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
 </Project>
