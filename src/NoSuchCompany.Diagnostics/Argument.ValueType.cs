@@ -3,11 +3,12 @@
 // All rights reserved.
 // May be used only in accordance with a valid Source Code License Agreement.
 // 
-// Last change: 14/08/2018 @ 6:32 PM
+// Last change: 08/09/2018 @ 10:30 AM
 // Last author: Christophe Commeyne
 // ==========================================================================
 
 using System;
+using System.Runtime.CompilerServices;
 
 namespace NoSuchCompany.Diagnostics
 {
@@ -17,236 +18,112 @@ namespace NoSuchCompany.Diagnostics
     {
         #region Public Methods
 
-        /// <param name="inst">Current value.</param>
-        /// <param name="lowerBound">Lower bound.</param>
-        /// <param name="instName">Inst name.</param>
-        /// <exception cref="ArgumentOutOfRangeException">
+        /// <param name="inst">The instance to validate.</param>
+        /// <param name="otherValue">Other value.</param>
+        /// <param name="instName">The name of the instance.</param>
+        /// <exception cref="ArgumentException">
         /// Thrown if :
-        /// <paramref name="inst" /> is lower than <paramref name="lowerBound" />.
+        /// <paramref name="inst" /> is equal to <paramref name="otherValue" />.
         /// </exception>
-        public static void ThrowIfIsLowerThan(ulong inst, ulong lowerBound, string instName)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void ThrowIfIsEqualTo<TValueType>(TValueType inst, TValueType otherValue, string instName) where TValueType : IComparable
         {
-            ThrowIfIsLowerThan(() => inst < lowerBound, inst, lowerBound, instName);
+            if (inst.CompareTo(otherValue) == 0)
+                throw new ArgumentException(instName, $"The value {instName} is equal to {otherValue}.");
         }
 
-        /// <param name="inst">Current value.</param>
-        /// <param name="lowerBound">Lower bound.</param>
-        /// <param name="instName">Inst name.</param>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown if :
-        /// <paramref name="inst" /> is lower than <paramref name="lowerBound" />.
-        /// </exception>
-        public static void ThrowIfIsLowerThan(long inst, long lowerBound, string instName)
-        {
-            ThrowIfIsLowerThan(() => inst < lowerBound, inst, lowerBound, instName);
-        }
-
-        /// <param name="inst">Current value.</param>
-        /// <param name="lowerBound">Lower bound.</param>
-        /// <param name="instName">Inst name.</param>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown if :
-        /// <paramref name="inst" /> is lower than <paramref name="lowerBound" />.
-        /// </exception>
-        public static void ThrowIfIsLowerThan(int inst, int lowerBound, string instName)
-        {
-            ThrowIfIsLowerThan(() => inst < lowerBound, inst, lowerBound, instName);
-        }
-
-        /// <param name="inst">Current value.</param>
-        /// <param name="lowerBound">Lower bound.</param>
-        /// <param name="instName">Inst name.</param>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown if :
-        /// <paramref name="inst" /> is lower than <paramref name="lowerBound" />.
-        /// </exception>
-        public static void ThrowIfIsLowerThan(uint inst, uint lowerBound, string instName)
-        {
-            ThrowIfIsLowerThan(() => inst < lowerBound, inst, lowerBound, instName);
-        }
-
-        /// <param name="inst">Current value.</param>
-        /// <param name="lowerBound">Lower bound.</param>
-        /// <param name="instName">Inst name.</param>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown if :
-        /// <paramref name="inst" /> is lower than <paramref name="lowerBound" />.
-        /// </exception>
-        public static void ThrowIfIsLowerThan(short inst, short lowerBound, string instName)
-        {
-            ThrowIfIsLowerThan(() => inst < lowerBound, inst, lowerBound, instName);
-        }
-
-        /// <param name="inst">Current value.</param>
-        /// <param name="lowerBound">Lower bound.</param>
-        /// <param name="instName">Inst name.</param>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown if :
-        /// <paramref name="inst" /> is lower than <paramref name="lowerBound" />.
-        /// </exception>
-        public static void ThrowIfIsLowerThan(ushort inst, ushort lowerBound, string instName)
-        {
-            ThrowIfIsLowerThan(() => inst < lowerBound, inst, lowerBound, instName);
-        }
-
-        /// <param name="inst">Current value.</param>
-        /// <param name="lowerBound">Lower bound.</param>
-        /// <param name="instName">Inst name.</param>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown if :
-        /// <paramref name="inst" /> is lower than <paramref name="lowerBound" />.
-        /// </exception>
-        public static void ThrowIfIsLowerThan(float inst, float lowerBound, string instName)
-        {
-            ThrowIfIsLowerThan(() => inst < lowerBound, inst, lowerBound, instName);
-        }
-
-        /// <param name="inst">Current value.</param>
-        /// <param name="lowerBound">Lower bound.</param>
-        /// <param name="instName">Inst name.</param>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown if :
-        /// <paramref name="inst" /> is lower than <paramref name="lowerBound" />.
-        /// </exception>
-        public static void ThrowIfIsLowerThan(double inst, double lowerBound, string instName)
-        {
-            ThrowIfIsLowerThan(() => inst < lowerBound, inst, lowerBound, instName);
-        }
-
-        /// <param name="inst">Current value.</param>
-        /// <param name="lowerBound">Lower bound.</param>
-        /// <param name="instName">Inst name.</param>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown if :
-        /// <paramref name="inst" /> is lower than <paramref name="lowerBound" />.
-        /// </exception>
-        public static void ThrowIfIsLowerThan(decimal inst, decimal lowerBound, string instName)
-        {
-            ThrowIfIsLowerThan(() => inst < lowerBound, inst, lowerBound, instName);
-        }
-
-        /// <param name="inst">Current value.</param>
+        /// <param name="inst">The instance to validate.</param>
         /// <param name="upperBound">Upper bound.</param>
-        /// <param name="instName">Inst name.</param>
+        /// <param name="instName">The name of the instance.</param>
         /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown if :
         /// <paramref name="inst" /> is greater than <paramref name="upperBound" />.
         /// </exception>
-        public static void ThrowIfIsGreaterThan(ulong inst, ulong upperBound, string instName)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void ThrowIfIsGreaterThan<TValueType>(TValueType inst, TValueType upperBound, string instName) where TValueType : IComparable
         {
-            ThrowIfIsGreaterThan(() => inst > upperBound, inst, upperBound, instName);
+            if (inst.CompareTo(upperBound) > 0)
+                throw new ArgumentOutOfRangeException(instName, $"The value {instName} is greater than {upperBound}. It is equal to {inst}.");
         }
 
-        /// <param name="inst">Current value.</param>
+        /// <param name="inst">The instance to validate.</param>
         /// <param name="upperBound">Upper bound.</param>
-        /// <param name="instName">Inst name.</param>
+        /// <param name="instName">The name of the instance.</param>
         /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown if :
         /// <paramref name="inst" /> is greater than <paramref name="upperBound" />.
         /// </exception>
-        public static void ThrowIfIsGreaterThan(long inst, long upperBound, string instName)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void ThrowIfIsGreaterThanOrEqualTo<TValueType>(TValueType inst, TValueType upperBound, string instName) where TValueType : IComparable
         {
-            ThrowIfIsGreaterThan(() => inst > upperBound, inst, upperBound, instName);
+            if (inst.CompareTo(upperBound) >= 0)
+                throw new ArgumentOutOfRangeException(instName, $"The value {instName} is greater than or equal to {upperBound}. It is equal to {inst}.");
         }
 
-        /// <param name="inst">Current value.</param>
-        /// <param name="upperBound">Upper bound.</param>
-        /// <param name="instName">Inst name.</param>
+        /// <param name="inst">The instance to validate.</param>
+        /// <param name="lowerBound">Lower bound.</param>
+        /// <param name="instName">The name of the instance.</param>
         /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown if :
-        /// <paramref name="inst" /> is greater than <paramref name="upperBound" />.
+        /// <paramref name="inst" /> is lower than <paramref name="lowerBound" />.
         /// </exception>
-        public static void ThrowIfIsGreaterThan(int inst, int upperBound, string instName)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void ThrowIfIsLessThan<TValueType>(TValueType inst, TValueType lowerBound, string instName) where TValueType : IComparable
         {
-            ThrowIfIsGreaterThan(() => inst > upperBound, inst, upperBound, instName);
+            if (inst.CompareTo(lowerBound) < 0)
+                throw new ArgumentOutOfRangeException(instName, $"The value {instName} is less than {lowerBound}. It is equal to {inst}.");
         }
 
-        /// <param name="inst">Current value.</param>
-        /// <param name="upperBound">Upper bound.</param>
-        /// <param name="instName">Inst name.</param>
+        /// <param name="inst">The instance to validate.</param>
+        /// <param name="lowerBound">Lower bound.</param>
+        /// <param name="instName">The name of the instance.</param>
         /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown if :
-        /// <paramref name="inst" /> is greater than <paramref name="upperBound" />.
+        /// <paramref name="inst" /> is less than or equal to <paramref name="lowerBound" />.
         /// </exception>
-        public static void ThrowIfIsGreaterThan(uint inst, uint upperBound, string instName)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void ThrowIfIsLessThanOrEqualTo<TValueType>(TValueType inst, TValueType lowerBound, string instName) where TValueType : IComparable
         {
-            ThrowIfIsGreaterThan(() => inst > upperBound, inst, upperBound, instName);
+            if (inst.CompareTo(lowerBound) <= 0)
+                throw new ArgumentOutOfRangeException(instName, $"The value {instName} is less than or equal to {lowerBound}. It is equal to {inst}.");
         }
 
-        /// <param name="inst">Current value.</param>
-        /// <param name="upperBound">Upper bound.</param>
-        /// <param name="instName">Inst name.</param>
+        /// <param name="inst">The instance to validate.</param>
+        /// <param name="inclusiveUpperBound"></param>
+        /// <param name="instName">The name of the instance.</param>
+        /// <param name="inclusiveLowerBound"></param>
+        /// <exception cref="ArgumentException">
+        /// Thrown if :
+        /// - The <paramref name="inclusiveLowerBound"/> is greater than <paramref name="inclusiveUpperBound"/>.
+        /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
         /// Thrown if :
-        /// <paramref name="inst" /> is greater than <paramref name="upperBound" />.
+        /// - The <paramref name="inst" /> is not between <paramref name="inclusiveLowerBound" /> and
+        /// <paramref name="inclusiveUpperBound" />.
         /// </exception>
-        public static void ThrowIfIsGreaterThan(short inst, short upperBound, string instName)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void ThrowIfIsNotBetween<TValueType>(TValueType inst, TValueType inclusiveLowerBound, TValueType inclusiveUpperBound, string instName) where TValueType : IComparable
         {
-            ThrowIfIsGreaterThan(() => inst > upperBound, inst, upperBound, instName);
+            if (inclusiveLowerBound.CompareTo(inclusiveUpperBound) > 0)
+                throw new ArgumentException($"The defined bounds are invalid: {nameof(inclusiveLowerBound)} ({inclusiveLowerBound}) is greater than {nameof(inclusiveUpperBound)} ({inclusiveUpperBound}).");
+            
+            ThrowIfIsLessThan(inst, inclusiveLowerBound, instName);
+
+            ThrowIfIsGreaterThan(inst, inclusiveUpperBound, instName);
         }
 
-        /// <param name="inst">Current value.</param>
-        /// <param name="upperBound">Upper bound.</param>
-        /// <param name="instName">Inst name.</param>
-        /// <exception cref="ArgumentOutOfRangeException">
+        /// <param name="inst">The instance to validate.</param>
+        /// <param name="otherValue">Other value.</param>
+        /// <param name="instName">The name of the instance.</param>
+        /// <exception cref="ArgumentException">
         /// Thrown if :
-        /// <paramref name="inst" /> is greater than <paramref name="upperBound" />.
+        /// <paramref name="inst" /> is not equal to <paramref name="otherValue" />.
         /// </exception>
-        public static void ThrowIfIsGreaterThan(ushort inst, ushort upperBound, string instName)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void ThrowIfIsNotEqualTo<TValueType>(TValueType inst, TValueType otherValue, string instName) where TValueType : IComparable
         {
-            ThrowIfIsGreaterThan(() => inst > upperBound, inst, upperBound, instName);
-        }
-
-        /// <param name="inst">Current value.</param>
-        /// <param name="upperBound">Upper bound.</param>
-        /// <param name="instName">Inst name.</param>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown if :
-        /// <paramref name="inst" /> is greater than <paramref name="upperBound" />.
-        /// </exception>
-        public static void ThrowIfIsGreaterThan(float inst, float upperBound, string instName)
-        {
-            ThrowIfIsGreaterThan(() => inst > upperBound, inst, upperBound, instName);
-        }
-
-        /// <param name="inst">Current value.</param>
-        /// <param name="upperBound">Upper bound.</param>
-        /// <param name="instName">Inst name.</param>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown if :
-        /// <paramref name="inst" /> is greater than <paramref name="upperBound" />.
-        /// </exception>
-        public static void ThrowIfIsGreaterThan(double inst, double upperBound, string instName)
-        {
-            ThrowIfIsGreaterThan(() => inst > upperBound, inst, upperBound, instName);
-        }
-
-        /// <param name="inst">Current value.</param>
-        /// <param name="upperBound">Upper bound.</param>
-        /// <param name="instName">Inst name.</param>
-        /// <exception cref="ArgumentOutOfRangeException">
-        /// Thrown if :
-        /// <paramref name="inst" /> is greater than <paramref name="upperBound" />.
-        /// </exception>
-        public static void ThrowIfIsGreaterThan(decimal inst, decimal upperBound, string instName)
-        {
-            ThrowIfIsGreaterThan(() => inst > upperBound, inst, upperBound, instName);
-        }
-
-        #endregion
-
-        #region Private Methods
-
-        private static void ThrowIfIsGreaterThan<TValue>(Func<bool> compareInst, TValue currentValue, TValue upperBound, string instName)
-        {
-            if (compareInst())
-                throw new ArgumentOutOfRangeException(instName, $"The value {instName} is greater than {upperBound}. It is equal to {currentValue}.");
-        }
-
-        private static void ThrowIfIsLowerThan<TValue>(Func<bool> compareInst, TValue currentValue, TValue lowerBound, string instName)
-        {
-            if (compareInst())
-                throw new ArgumentOutOfRangeException(instName, $"The value {instName} is less than {lowerBound}. It is equal to {currentValue}.");
+            if (inst.CompareTo(otherValue) != 0)
+                throw new ArgumentException(instName, $"The value {instName} is not equal to {otherValue}.");
         }
 
         #endregion

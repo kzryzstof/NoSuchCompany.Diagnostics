@@ -42,6 +42,24 @@ namespace NoSuchCompany.Diagnostics.Tests
             Argument.ThrowIfIsNotUtc(DateTime.UtcNow, "instName");
         }
 
+        [Fact]
+        public void ThrowIfIsUnspecified_DateTimeIsLocal_NoExceptionThrown()
+        {
+            Argument.ThrowIfIsUnspecified(DateTime.Now, "instName");
+        }
+
+        [Fact]
+        public void ThrowIfIsUnspecified_DateTimeIsUtc_NoExceptionThrown()
+        {
+            Argument.ThrowIfIsUnspecified(DateTime.UtcNow, "instName");
+        }
+
+        [Fact]
+        public void ThrowIfIsUnspecified_DateTimeIsUtc_ArgumentExceptionThrown()
+        {
+            Assert.Throws<ArgumentException>(() => Argument.ThrowIfIsUnspecified(new DateTime(2018, 09, 08), "instName"));
+        }
+
         #endregion
     }
 
