@@ -3,45 +3,61 @@
 // All rights reserved.
 // May be used only in accordance with a valid Source Code License Agreement.
 // 
-// Last change: 13/08/2018 @ 5:09 PM
+// Last change: 08/09/2018 @ 10:15 AM
 // Last author: Christophe Commeyne
 // ==========================================================================
 
 using System;
+using System.Runtime.CompilerServices;
 
 namespace NoSuchCompany.Diagnostics
 {
     #region Class
 
     /// <summary>
-    /// Provides checks for the <see cref="DateTime"/> type.
+    /// Provides checks for the <see cref="DateTime" /> type.
     /// </summary>
     public static partial class Argument
     {
         #region Public Methods
 
-        /// <param name="inst">Inst.</param>
-        /// <param name="instName">Inst name.</param>
+        /// <param name="inst">The instance to validate.</param>
+        /// <param name="instName">The name of the instance.</param>
         /// <exception cref="ArgumentException">
         /// Thrown if :
         /// <paramref name="inst" /> is not specified in a local time zone.
         /// </exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void ThrowIfIsNotLocal(DateTime inst, string instName)
         {
             if (inst.Kind != DateTimeKind.Local)
                 throw new ArgumentException(instName, $"{instName} is not expressed in a local time-zone.");
         }
 
-        /// <param name="inst">Inst.</param>
-        /// <param name="instName">Inst name.</param>
+        /// <param name="inst">The instance to validate.</param>
+        /// <param name="instName">The name of the instance.</param>
         /// <exception cref="ArgumentException">
         /// Thrown if :
         /// <paramref name="inst" /> is not specified in the UTC time zone.
         /// </exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void ThrowIfIsNotUtc(DateTime inst, string instName)
         {
             if (inst.Kind != DateTimeKind.Utc)
                 throw new ArgumentException(instName, $"{instName} is not expressed in the UTC time-zone.");
+        }
+
+        /// <param name="inst">The instance to validate.</param>
+        /// <param name="instName">The name of the instance.</param>
+        /// <exception cref="ArgumentException">
+        /// Thrown if :
+        /// <paramref name="inst" /> is not specified in the UTC or the Local time zone.
+        /// </exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void ThrowIfIsUnspecified(DateTime inst, string instName)
+        {
+            if (inst.Kind == DateTimeKind.Unspecified)
+                throw new ArgumentException(instName, $"{instName} is not expressed in the UTC or the Local time-zone.");
         }
 
         #endregion

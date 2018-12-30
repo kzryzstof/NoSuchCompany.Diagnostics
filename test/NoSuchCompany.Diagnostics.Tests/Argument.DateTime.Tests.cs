@@ -3,7 +3,7 @@
 // All rights reserved.
 // May be used only in accordance with a valid Source Code License Agreement.
 // 
-// Last change: 13/08/2018 @ 5:19 PM
+// Last change: 30/12/2018 @ 3:18 PM
 // Last author: Christophe Commeyne
 // ==========================================================================
 
@@ -16,7 +16,7 @@ namespace NoSuchCompany.Diagnostics.Tests
 
     public class ArgumentDateTimeTests
     {
-        #region Public Methods
+        #region Tests
 
         [Fact]
         public void ThrowIfIsNotLocal_DateTimeIsLocal_NoExceptionThrown()
@@ -40,6 +40,24 @@ namespace NoSuchCompany.Diagnostics.Tests
         public void ThrowIfIsNotUtc_DateTimeIsUtc_NoExceptionThrown()
         {
             Argument.ThrowIfIsNotUtc(DateTime.UtcNow, "instName");
+        }
+
+        [Fact]
+        public void ThrowIfIsUnspecified_DateTimeIsLocal_NoExceptionThrown()
+        {
+            Argument.ThrowIfIsUnspecified(DateTime.Now, "instName");
+        }
+
+        [Fact]
+        public void ThrowIfIsUnspecified_DateTimeIsUtc_NoExceptionThrown()
+        {
+            Argument.ThrowIfIsUnspecified(DateTime.UtcNow, "instName");
+        }
+
+        [Fact]
+        public void ThrowIfIsUnspecified_DateTimeIsUtc_ArgumentExceptionThrown()
+        {
+            Assert.Throws<ArgumentException>(() => Argument.ThrowIfIsUnspecified(new DateTime(2018, 09, 08), "instName"));
         }
 
         #endregion

@@ -3,11 +3,12 @@
 // All rights reserved.
 // May be used only in accordance with a valid Source Code License Agreement.
 // 
-// Last change: 13/08/2018 @ 5:31 PM
+// Last change: 09/09/2018 @ 8:18 AM
 // Last author: Christophe Commeyne
 // ==========================================================================
 
 using System;
+using System.Runtime.CompilerServices;
 
 namespace NoSuchCompany.Diagnostics
 {
@@ -20,16 +21,45 @@ namespace NoSuchCompany.Diagnostics
     {
         #region Public Methods
 
-        /// <param name="inst">Inst.</param>
-        /// <param name="instName">Inst name.</param>
+        /// <param name="inst">The instance to validate.</param>
+        /// <param name="instName">The name of the instance.</param>
         /// <exception cref="ArgumentException">
         /// Thrown if :
         /// <paramref name="inst" /> is empty.
         /// </exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void ThrowIfIsEmpty(Guid inst, string instName)
         {
             if (inst == Guid.Empty)
                 throw new ArgumentException(instName, $"{instName} is empty.");
+        }
+
+        /// <param name="inst">The instance to validate.</param>
+        /// <param name="otherInst">The other instance to compare against.</param>
+        /// <param name="instName">The name of the instance.</param>
+        /// <exception cref="ArgumentException">
+        /// Thrown if :
+        /// <paramref name="inst" /> is equal to <paramref name="otherInst" />.
+        /// </exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void ThrowIfIsEqualTo(Guid inst, Guid otherInst, string instName)
+        {
+            if (inst == otherInst)
+                throw new ArgumentException(instName, $"{instName} is equal to {otherInst}.");
+        }
+
+        /// <param name="inst">The instance to validate.</param>
+        /// <param name="otherInst">The other instance to compare against.</param>
+        /// <param name="instName">The name of the instance.</param>
+        /// <exception cref="ArgumentException">
+        /// Thrown if :
+        /// <paramref name="inst" /> is not equal to <paramref name="otherInst" />.
+        /// </exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void ThrowIfIsNotEqualTo(Guid inst, Guid otherInst, string instName)
+        {
+            if (inst != otherInst)
+                throw new ArgumentException(instName, $"{instName} is not equal to {otherInst}.");
         }
 
         #endregion
