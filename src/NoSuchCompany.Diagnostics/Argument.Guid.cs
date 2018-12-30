@@ -35,6 +35,19 @@ namespace NoSuchCompany.Diagnostics
         }
 
         /// <param name="inst">The instance to validate.</param>
+        /// <param name="instName">The name of the instance.</param>
+        /// <exception cref="ArgumentException">
+        /// Thrown if :
+        /// <paramref name="inst" /> is not empty.
+        /// </exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void ThrowIfIsNotEmpty(Guid inst, string instName)
+        {
+            if (inst != Guid.Empty)
+                throw new ArgumentException(instName, $"{instName} is not empty.");
+        }
+
+        /// <param name="inst">The instance to validate.</param>
         /// <param name="otherInst">The other instance to compare against.</param>
         /// <param name="instName">The name of the instance.</param>
         /// <exception cref="ArgumentException">

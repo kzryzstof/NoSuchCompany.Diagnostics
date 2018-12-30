@@ -16,4 +16,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\NoSuchCompany.Diagnostics\NoSuchCompany.Diagnostics.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Fluent\" />
+  </ItemGroup>
 </Project>

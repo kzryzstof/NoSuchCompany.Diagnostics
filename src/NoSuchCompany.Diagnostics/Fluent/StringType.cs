@@ -3,32 +3,28 @@
 // All rights reserved.
 // May be used only in accordance with a valid Source Code License Agreement.
 // 
-// Last change: 08/09/2018 @ 10:33 AM
+// Last change: 30/12/2018 @ 4:37 PM
 // Last author: Christophe Commeyne
 // ==========================================================================
 
 using System;
 
-namespace NoSuchCompany.Diagnostics
+namespace NoSuchCompany.Diagnostics.Fluent
 {
     #region Class
 
-    public class StringType
+    public sealed class StringType : ReferenceType<string>
     {
-        #region Constants
-
-        private readonly ArgumentInstance m_argumentInstanceName;
-
-        private readonly string m_argValue;
-
-        #endregion
-
         #region Constructors
 
-        public StringType(ArgumentInstance argumentInstanceName, string argValue)
+        /// <param name="argumentContext"></param>
+        /// <param name="argValue"></param>
+        /// <exception cref="ArgumentNullException">
+        /// Thrown if:
+        /// - The <paramref name="argumentContext" /> is not specified.
+        /// </exception>
+        internal StringType(ArgumentContext argumentContext, string argValue) : base(argumentContext, argValue)
         {
-            m_argumentInstanceName = argumentInstanceName;
-            m_argValue = argValue;
         }
 
         #endregion
@@ -37,14 +33,14 @@ namespace NoSuchCompany.Diagnostics
 
         public StringType IsEqualTo(string otherString)
         {
-            Argument.ThrowIfIsEqualTo(m_argValue, otherString, m_argumentInstanceName.Name);
+            Argument.ThrowIfIsEqualTo(Value, otherString, Name);
 
             return this;
         }
 
         public StringType IsEqualTo(string otherString, StringComparison stringComparison)
         {
-            Argument.ThrowIfIsEqualTo(m_argValue, otherString, m_argumentInstanceName.Name, stringComparison);
+            Argument.ThrowIfIsEqualTo(Value, otherString, Name, stringComparison);
 
             return this;
         }
@@ -62,7 +58,7 @@ namespace NoSuchCompany.Diagnostics
         /// </exception>
         public StringType IsLengthEqualTo(uint length)
         {
-            Argument.ThrowIfLengthIsEqualTo(m_argValue, length, m_argumentInstanceName.Name);
+            Argument.ThrowIfLengthIsEqualTo(Value, length, Name);
 
             return this;
         }
@@ -80,7 +76,7 @@ namespace NoSuchCompany.Diagnostics
         /// </exception>
         public StringType IsLengthGreaterThan(uint length)
         {
-            Argument.ThrowIfLengthIsGreaterThan(m_argValue, length, m_argumentInstanceName.Name);
+            Argument.ThrowIfLengthIsGreaterThan(Value, length, Name);
 
             return this;
         }
@@ -98,7 +94,7 @@ namespace NoSuchCompany.Diagnostics
         /// </exception>
         public StringType IsLengthLessThan(uint length)
         {
-            Argument.ThrowIfLengthIsLessThan(m_argValue, length, m_argumentInstanceName.Name);
+            Argument.ThrowIfLengthIsLessThan(Value, length, Name);
 
             return this;
         }
@@ -116,35 +112,35 @@ namespace NoSuchCompany.Diagnostics
         /// </exception>
         public StringType IsLengthNotEqualTo(uint length)
         {
-            Argument.ThrowIfLengthIsNotEqualTo(m_argValue, length, m_argumentInstanceName.Name);
+            Argument.ThrowIfLengthIsNotEqualTo(Value, length, Name);
 
             return this;
         }
 
         public StringType IsNotEqualTo(string otherString)
         {
-            Argument.ThrowIfIsNotEqualTo(m_argValue, otherString, m_argumentInstanceName.Name);
+            Argument.ThrowIfIsNotEqualTo(Value, otherString, Name);
 
             return this;
         }
 
         public StringType IsNotEqualTo(string otherString, StringComparison stringComparison)
         {
-            Argument.ThrowIfIsNotEqualTo(m_argValue, otherString, m_argumentInstanceName.Name, stringComparison);
+            Argument.ThrowIfIsNotEqualTo(Value, otherString, Name, stringComparison);
 
             return this;
         }
 
         public StringType IsNullOrEmpty()
         {
-            Argument.ThrowIfIsNullOrEmpty(m_argValue, m_argumentInstanceName.Name);
+            Argument.ThrowIfIsNullOrEmpty(Value, Name);
 
             return this;
         }
 
         public StringType IsNullOrWhiteSpace()
         {
-            Argument.ThrowIfIsNullOrWhiteSpace(m_argValue, m_argumentInstanceName.Name);
+            Argument.ThrowIfIsNullOrWhiteSpace(Value, Name);
 
             return this;
         }
