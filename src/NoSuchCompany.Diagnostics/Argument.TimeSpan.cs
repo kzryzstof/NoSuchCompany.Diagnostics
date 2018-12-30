@@ -21,6 +21,10 @@ namespace NoSuchCompany.Diagnostics
     {
         #region Public Methods
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentOutOfRangeException" /> if the specified <paramref name="inst" />
+        /// is greater than the <paramref name="upperBound" />.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="upperBound">Upper bound.</param>
         /// <param name="instName">The name of the instance.</param>
@@ -35,6 +39,10 @@ namespace NoSuchCompany.Diagnostics
                 throw new ArgumentOutOfRangeException(instName, $"{instName} is greater than {upperBound}. (Value={inst}).");
         }
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentOutOfRangeException" /> if the specified <paramref name="inst" />
+        /// is greater than or equal to the <paramref name="upperBound" />.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="upperBound">Upper bound.</param>
         /// <param name="instName">The name of the instance.</param>
@@ -45,10 +53,14 @@ namespace NoSuchCompany.Diagnostics
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void ThrowIfIsGreaterThanOrEqualTo(TimeSpan inst, TimeSpan upperBound, string instName)
         {
-            if (inst > upperBound)
+            if (inst >= upperBound)
                 throw new ArgumentOutOfRangeException(instName, $"{instName} is greater than or equal to {upperBound}. (Value={inst}).");
         }
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentOutOfRangeException" /> if the specified <paramref name="inst" />
+        /// is less than the <paramref name="lowerBound" />.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="lowerBound">Lower bound.</param>
         /// <param name="instName">The name of the instance.</param>
@@ -57,12 +69,16 @@ namespace NoSuchCompany.Diagnostics
         /// <paramref name="inst" /> is lower than <paramref name="lowerBound" />.
         /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void ThrowIfIsLowerThan(TimeSpan inst, TimeSpan lowerBound, string instName)
+        public static void ThrowIfIsLessThan(TimeSpan inst, TimeSpan lowerBound, string instName)
         {
             if (inst < lowerBound)
                 throw new ArgumentOutOfRangeException(instName, $"{instName} is lower than {lowerBound}. (Value={inst}).");
         }
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentOutOfRangeException" /> if the specified <paramref name="inst" />
+        /// is less than or equal to the <paramref name="lowerBound" />.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="lowerBound">Lower bound.</param>
         /// <param name="instName">The name of the instance.</param>
@@ -71,7 +87,7 @@ namespace NoSuchCompany.Diagnostics
         /// <paramref name="inst" /> is lower than or equal to <paramref name="lowerBound" />.
         /// </exception>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void ThrowIfIsLowerThanOrEqualTo(TimeSpan inst, TimeSpan lowerBound, string instName)
+        public static void ThrowIfIsLessThanOrEqualTo(TimeSpan inst, TimeSpan lowerBound, string instName)
         {
             if (inst <= lowerBound)
                 throw new ArgumentOutOfRangeException(instName, $"{instName} is lower than or equal to {lowerBound}. (Value={inst}).");

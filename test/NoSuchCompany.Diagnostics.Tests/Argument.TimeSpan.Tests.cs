@@ -3,7 +3,7 @@
 // All rights reserved.
 // May be used only in accordance with a valid Source Code License Agreement.
 // 
-// Last change: 14/08/2018 @ 7:21 PM
+// Last change: 30/12/2018 @ 3:18 PM
 // Last author: Christophe Commeyne
 // ==========================================================================
 
@@ -18,14 +18,85 @@ namespace NoSuchCompany.Diagnostics.Tests
 
     public class ArgumentTimeSpanTests
     {
-        private class TimeSpanData : IEnumerable<object[]>
+        #region Tests
+
+        [Theory]
+        [ClassData(typeof(GreaterTimeSpanData))]
+        public void ThrowIfIsGreaterThan_InstIsGreaterThanUpperBound_ArgumentOutOfRangeExceptionThrown(TimeSpan inst, TimeSpan upperBound)
         {
+            Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsGreaterThan(inst, upperBound, "instName"));
+        }
+
+        [Theory]
+        [ClassData(typeof(LowerOrEqualTimeSpanData))]
+        public void ThrowIfIsGreaterThan_InstIsLowerThanUpperBound_NoExceptionThrown(TimeSpan inst, TimeSpan upperBound)
+        {
+            Argument.ThrowIfIsGreaterThan(inst, upperBound, "instName");
+        }
+
+        [Theory]
+        [ClassData(typeof(GreaterOrEqualTimeSpanData))]
+        public void ThrowIfIsGreaterThanOrEqualTo_InstIsGreaterThanOrEqualToUpperBound_ArgumentOutOfRangeExceptionThrown(TimeSpan inst, TimeSpan upperBound)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsGreaterThanOrEqualTo(inst, upperBound, "instName"));
+        }
+
+        [Theory]
+        [ClassData(typeof(LowerTimeSpanData))]
+        public void ThrowIfIsGreaterThanOrEqualTo_InstIsLessThanUpperBound_NoExceptionThrown(TimeSpan inst, TimeSpan upperBound)
+        {
+            Argument.ThrowIfIsGreaterThanOrEqualTo(inst, upperBound, "instName");
+        }
+
+        [Theory]
+        [ClassData(typeof(GreaterTimeSpanData))]
+        public void ThrowIfIsLessThanOrEqualTo_InstIsGreaterThanLowerBound_NoExceptionThrown(TimeSpan inst, TimeSpan lowerBound)
+        {
+            Argument.ThrowIfIsLessThanOrEqualTo(inst, lowerBound, "instName");
+        }
+
+        [Theory]
+        [ClassData(typeof(LowerOrEqualTimeSpanData))]
+        public void ThrowIfIsLessThanOrEqualTo_InstIsLowerThanOrEqualToLowerBound_ArgumentOutOfRangeExceptionThrown(TimeSpan inst, TimeSpan lowerBound)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsLessThanOrEqualTo(inst, lowerBound, "instName"));
+        }
+
+        [Theory]
+        [ClassData(typeof(GreaterOrEqualTimeSpanData))]
+        public void ThrowIfIsLowerThan_InstIsGreaterThanLowerBound_NoExceptionThrown(TimeSpan inst, TimeSpan lowerBound)
+        {
+            Argument.ThrowIfIsLessThan(inst, lowerBound, "instName");
+        }
+
+        [Theory]
+        [ClassData(typeof(LowerTimeSpanData))]
+        public void ThrowIfIsLowerThan_InstIsLowerThanLowerBound_ArgumentOutOfRangeExceptionThrown(TimeSpan inst, TimeSpan lowerBound)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsLessThan(inst, lowerBound, "instName"));
+        }
+
+        #endregion
+
+        #region Nested types
+
+        /// <summary>
+        /// Contains <see cref="TimeSpan" /> tuples with the 1st item being the lowest value.
+        /// </summary>
+        private class LowerTimeSpanData : IEnumerable<object[]>
+        {
+            #region Constants
+
             private readonly List<object[]> m_data = new List<object[]>
             {
-                new object[] { TimeSpan.MinValue, TimeSpan.Zero },
-                new object[] { TimeSpan.FromMilliseconds(-1d), TimeSpan.Zero },
-                new object[] { TimeSpan.MaxValue.Subtract(TimeSpan.FromMilliseconds(1d)), TimeSpan.MaxValue },
+                //  Lower limit.
+                new object[] {TimeSpan.MinValue, TimeSpan.MinValue.Add(TimeSpan.FromMilliseconds(1d))},
+
+                //  Upper limit.
+                new object[] {TimeSpan.MaxValue.Subtract(TimeSpan.FromMilliseconds(1d)), TimeSpan.MaxValue}
             };
+
+            #endregion
 
             #region Public Methods
 
@@ -46,34 +117,130 @@ namespace NoSuchCompany.Diagnostics.Tests
             #endregion
         }
 
-        [Theory]
-        [ClassData(typeof(TimeSpanData))]
-        public void ThrowIfIsLowerThan_InstIsLowerThanLowerBound_ArgumentOutOfRangeExceptionThrown(TimeSpan inst, TimeSpan lowerBound)
+        /// <summary>
+        /// Contains <see cref="TimeSpan" /> tuples with the 1st item being the lowest value.
+        /// </summary>
+        private class LowerOrEqualTimeSpanData : IEnumerable<object[]>
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsLowerThan(inst, lowerBound, "instName"));
+            #region Constants
+
+            private readonly List<object[]> m_data = new List<object[]>
+            {
+                //  Lower limit.
+                new object[] {TimeSpan.MinValue, TimeSpan.MinValue.Add(TimeSpan.FromMilliseconds(1d))},
+
+                //  Equality.
+                new object[] {TimeSpan.Zero, TimeSpan.Zero},
+
+                //  Upper limit.
+                new object[] {TimeSpan.MaxValue.Subtract(TimeSpan.FromMilliseconds(1d)), TimeSpan.MaxValue}
+            };
+
+            #endregion
+
+            #region Public Methods
+
+            public IEnumerator<object[]> GetEnumerator()
+            {
+                return m_data.GetEnumerator();
+            }
+
+            #endregion
+
+            #region Private Methods
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return GetEnumerator();
+            }
+
+            #endregion
         }
 
-        [Theory]
-        [ClassData(typeof(TimeSpanData))]
-        public void ThrowIfIsLowerThan_InstIsGreaterThanLowerBound_NoExceptionThrown(TimeSpan lowerBound, TimeSpan inst)
+        /// <summary>
+        /// Contains <see cref="TimeSpan" /> tuples with the 1st item being the greatest value.
+        /// </summary>
+        private class GreaterTimeSpanData : IEnumerable<object[]>
         {
-            Argument.ThrowIfIsLowerThan(inst, lowerBound, "instName");
+            #region Constants
+
+            /// <summary>
+            /// Contains <see cref="TimeSpan" /> tuples with the 1st item being the greatest value.
+            /// </summary>
+            private readonly List<object[]> m_data = new List<object[]>
+            {
+                //  Lower limit.
+                new object[] {TimeSpan.MinValue.Add(TimeSpan.FromMilliseconds(1d)), TimeSpan.MinValue},
+
+                //  Upper limit.
+                new object[] {TimeSpan.MaxValue, TimeSpan.MaxValue.Subtract(TimeSpan.FromMilliseconds(1d))}
+            };
+
+            #endregion
+
+            #region Public Methods
+
+            public IEnumerator<object[]> GetEnumerator()
+            {
+                return m_data.GetEnumerator();
+            }
+
+            #endregion
+
+            #region Private Methods
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return GetEnumerator();
+            }
+
+            #endregion
         }
 
-        [Theory]
-        [ClassData(typeof(TimeSpanData))]
-        public void ThrowIfIsGreaterThan_InstIsLowerThanUpperBound_NoExceptionThrown(TimeSpan inst, TimeSpan upperBound)
+        /// <summary>
+        /// Contains <see cref="TimeSpan" /> tuples with the 1st item being the greatest value.
+        /// </summary>
+        private class GreaterOrEqualTimeSpanData : IEnumerable<object[]>
         {
-            Argument.ThrowIfIsGreaterThan(inst, upperBound, "instName");
+            #region Constants
+
+            /// <summary>
+            /// Contains <see cref="TimeSpan" /> tuples with the 1st item being the greatest value.
+            /// </summary>
+            private readonly List<object[]> m_data = new List<object[]>
+            {
+                //  Lower limit.
+                new object[] {TimeSpan.MinValue.Add(TimeSpan.FromMilliseconds(1d)), TimeSpan.MinValue},
+
+                //  Equality.
+                new object[] {TimeSpan.Zero, TimeSpan.Zero},
+
+                //  Upper limit.
+                new object[] {TimeSpan.MaxValue, TimeSpan.MaxValue.Subtract(TimeSpan.FromMilliseconds(1d))}
+            };
+
+            #endregion
+
+            #region Public Methods
+
+            public IEnumerator<object[]> GetEnumerator()
+            {
+                return m_data.GetEnumerator();
+            }
+
+            #endregion
+
+            #region Private Methods
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return GetEnumerator();
+            }
+
+            #endregion
         }
 
-        [Theory]
-        [ClassData(typeof(TimeSpanData))]
-        public void ThrowIfIsGreaterThan_InstIsGreaterThanUpperBound_ArgumentOutOfRangeExceptionThrown(TimeSpan upperBound, TimeSpan inst)
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsGreaterThan(inst, upperBound, "instName"));
-            
-        }
+        #endregion
     }
 
     #endregion

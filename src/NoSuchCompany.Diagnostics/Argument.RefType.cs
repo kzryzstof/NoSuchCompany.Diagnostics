@@ -3,7 +3,7 @@
 // All rights reserved.
 // May be used only in accordance with a valid Source Code License Agreement.
 // 
-// Last change: 09/09/2018 @ 11:47 AM
+// Last change: 30/12/2018 @ 3:54 PM
 // Last author: Christophe Commeyne
 // ==========================================================================
 
@@ -21,6 +21,10 @@ namespace NoSuchCompany.Diagnostics
     {
         #region Public Methods
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentException" /> if the specified <paramref name="inst" />
+        /// is not null.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="instName">The name of the instance.</param>
         /// <typeparam name="TType">The type of <paramref name="inst" />.</typeparam>
@@ -35,6 +39,10 @@ namespace NoSuchCompany.Diagnostics
                 throw new ArgumentException(instName, $"{instName} is specified.");
         }
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentException" /> if the <paramref name="inst" />
+        /// does not match the specified <paramref name="{TExpectedType}"></paramref>.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="instName">The name of the instance.</param>
         /// <typeparam name="TExpectedType">The expected type of <paramref name="inst" />.</typeparam>
@@ -49,6 +57,10 @@ namespace NoSuchCompany.Diagnostics
                 throw new ArgumentException(instName, $"The type of {instName} ({inst.GetType().Name}) is not a {typeof(TExpectedType).Name}: {inst.GetType().Name}");
         }
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentNullException" /> if the specified <paramref name="inst" />
+        /// is null.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="instName">The name of the instance.</param>
         /// <typeparam name="TType">The type of <paramref name="inst" />.</typeparam>
@@ -63,6 +75,10 @@ namespace NoSuchCompany.Diagnostics
                 throw new ArgumentNullException(instName, $"{instName} is null.");
         }
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentException" /> if the <paramref name="inst" />
+        /// matches the specified <paramref name="{TExpectedType}"></paramref>.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="instName">The name of the instance.</param>
         /// <typeparam name="TExpectedType">The expected type of <paramref name="inst" />.</typeparam>

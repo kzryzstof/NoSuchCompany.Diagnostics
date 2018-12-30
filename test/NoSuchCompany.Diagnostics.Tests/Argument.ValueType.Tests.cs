@@ -3,7 +3,7 @@
 // All rights reserved.
 // May be used only in accordance with a valid Source Code License Agreement.
 // 
-// Last change: 23/12/2018 @ 5:42 PM
+// Last change: 30/12/2018 @ 3:19 PM
 // Last author: Christophe Commeyne
 // ==========================================================================
 
@@ -16,7 +16,7 @@ namespace NoSuchCompany.Diagnostics.Tests
 
     public class ArgumentValueTypeTests
     {
-        #region Public Methods
+        #region Tests
 
         [Theory]
         [InlineData(0.000000000000001, 0.0000000000000000)]
@@ -602,11 +602,9 @@ namespace NoSuchCompany.Diagnostics.Tests
             Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsLessThan(inst, lowerBound, "instName"));
         }
 
-        #endregion
-
         [Theory]
         [InlineData(-0.000000000000001d, 0d, 1d)]
-        [InlineData( 1.000000000000001d, 0d, 1d)]
+        [InlineData(1.000000000000001d, 0d, 1d)]
         public void ThrowIfIsNotBetween_DoubleInstIsGreaterThanUpperBound_ArgumentOutOfRangeExceptionThrown(double inst, double lowerBound, double upperBound)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsNotBetween(inst, lowerBound, upperBound, "instName"));
@@ -614,7 +612,7 @@ namespace NoSuchCompany.Diagnostics.Tests
 
         [Theory]
         [InlineData(-0.0000001f, 0f, 1f)]
-        [InlineData( 1.0000001f, 0f, 1f)]
+        [InlineData(1.0000001f, 0f, 1f)]
         public void ThrowIfIsNotBetween_FloatInstIsGreaterThanUpperBound_ArgumentOutOfRangeExceptionThrown(float inst, float lowerBound, float upperBound)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsNotBetween(inst, lowerBound, upperBound, "instName"));
@@ -629,44 +627,46 @@ namespace NoSuchCompany.Diagnostics.Tests
         }
 
         [Theory]
-        [InlineData((uint)0, (uint)1, (uint)2)]
-        [InlineData((uint)2, (uint)0, (uint)1)]
-        public void ThrowIfIsNotBetween_UnsignedIntInstIsGreaterThanUpperBound_ArgumentOutOfRangeExceptionThrown(uint inst, uint lowerBound, uint upperBound)
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsNotBetween(inst, lowerBound, upperBound, "instName"));
-        }
-
-        [Theory]
-        [InlineData((short)-1, (short)0, (short)1)]
-        [InlineData((short)2, (short)0, (short)1)]
-        public void ThrowIfIsNotBetween_ShortInstIsGreaterThanUpperBound_ArgumentOutOfRangeExceptionThrown(short inst, short lowerBound, short upperBound)
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsNotBetween(inst, lowerBound, upperBound, "instName"));
-        }
-
-        [Theory]
-        [InlineData((ushort)0, (ushort)1, (ushort)2)]
-        [InlineData((ushort)2, (ushort)0, (ushort)1)]
-        public void ThrowIfIsNotBetween_UnsignedShortInstIsGreaterThanUpperBound_ArgumentOutOfRangeExceptionThrown(ushort inst, ushort lowerBound, ushort upperBound)
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsNotBetween(inst, lowerBound, upperBound, "instName"));
-        }
-
-        [Theory]
-        [InlineData((ulong)0, (ulong)1, (ulong)2)]
-        [InlineData((ulong)2, (ulong)0, (ulong)1)]
+        [InlineData((ulong) 0, (ulong) 1, (ulong) 2)]
+        [InlineData((ulong) 2, (ulong) 0, (ulong) 1)]
         public void ThrowIfIsNotBetween_LongInstIsGreaterThanUpperBound_ArgumentOutOfRangeExceptionThrown(ulong inst, ulong lowerBound, ulong upperBound)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsNotBetween(inst, lowerBound, upperBound, "instName"));
         }
 
         [Theory]
-        [InlineData((long)0, (long)1, (long)2)]
-        [InlineData((long)2, (long)0, (long)1)]
+        [InlineData((short) -1, (short) 0, (short) 1)]
+        [InlineData((short) 2, (short) 0, (short) 1)]
+        public void ThrowIfIsNotBetween_ShortInstIsGreaterThanUpperBound_ArgumentOutOfRangeExceptionThrown(short inst, short lowerBound, short upperBound)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsNotBetween(inst, lowerBound, upperBound, "instName"));
+        }
+
+        [Theory]
+        [InlineData((uint) 0, (uint) 1, (uint) 2)]
+        [InlineData((uint) 2, (uint) 0, (uint) 1)]
+        public void ThrowIfIsNotBetween_UnsignedIntInstIsGreaterThanUpperBound_ArgumentOutOfRangeExceptionThrown(uint inst, uint lowerBound, uint upperBound)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsNotBetween(inst, lowerBound, upperBound, "instName"));
+        }
+
+        [Theory]
+        [InlineData((long) 0, (long) 1, (long) 2)]
+        [InlineData((long) 2, (long) 0, (long) 1)]
         public void ThrowIfIsNotBetween_UnsignedLongInstIsGreaterThanUpperBound_ArgumentOutOfRangeExceptionThrown(long inst, long lowerBound, long upperBound)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsNotBetween(inst, lowerBound, upperBound, "instName"));
         }
+
+        [Theory]
+        [InlineData((ushort) 0, (ushort) 1, (ushort) 2)]
+        [InlineData((ushort) 2, (ushort) 0, (ushort) 1)]
+        public void ThrowIfIsNotBetween_UnsignedShortInstIsGreaterThanUpperBound_ArgumentOutOfRangeExceptionThrown(ushort inst, ushort lowerBound, ushort upperBound)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => Argument.ThrowIfIsNotBetween(inst, lowerBound, upperBound, "instName"));
+        }
+
+        #endregion
     }
 
     #endregion

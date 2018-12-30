@@ -7,13 +7,13 @@ namespace NoSuchCompany.Diagnostics.Tests
 {
     public class TestJig
     {
-        [Fact]
-        public void Test()
-        {
-            DateTime timestampUtc = DateTime.UtcNow;
+        //[Fact]
+        //public void Test()
+        //{
+        //    DateTime timestampUtc = DateTime.UtcNow;
 
-            timestampUtc.ThrowIf(nameof(timestampUtc)).IsEqualTo(DateTime.Now);
+        //    timestampUtc.ThrowIf(nameof(timestampUtc)).IsEqualTo(DateTime.Now);
 
-        }
+        //}
     }
 }

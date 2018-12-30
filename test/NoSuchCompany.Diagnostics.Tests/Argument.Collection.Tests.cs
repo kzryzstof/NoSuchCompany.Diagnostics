@@ -3,7 +3,7 @@
 // All rights reserved.
 // May be used only in accordance with a valid Source Code License Agreement.
 // 
-// Last change: 23/12/2018 @ 5:27 PM
+// Last change: 30/12/2018 @ 3:18 PM
 // Last author: Christophe Commeyne
 // ==========================================================================
 
@@ -18,7 +18,7 @@ namespace NoSuchCompany.Diagnostics.Tests
 
     public class ArgumentCollectionTests
     {
-        #region Public Methods
+        #region Tests
 
         [Theory]
         [ClassData(typeof(EmptyCollectionData))]
@@ -35,6 +35,8 @@ namespace NoSuchCompany.Diagnostics.Tests
         }
 
         #endregion
+
+        #region Nested types
 
         private class EmptyCollectionData : IEnumerable<object[]>
         {
@@ -101,6 +103,8 @@ namespace NoSuchCompany.Diagnostics.Tests
 
             #endregion
         }
+
+        #endregion
     }
 
     #endregion

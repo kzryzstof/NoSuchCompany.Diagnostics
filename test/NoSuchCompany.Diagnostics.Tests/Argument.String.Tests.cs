@@ -3,7 +3,7 @@
 // All rights reserved.
 // May be used only in accordance with a valid Source Code License Agreement.
 // 
-// Last change: 09/09/2018 @ 11:58 AM
+// Last change: 30/12/2018 @ 3:50 PM
 // Last author: Christophe Commeyne
 // ==========================================================================
 
@@ -16,7 +16,7 @@ namespace NoSuchCompany.Diagnostics.Tests
 
     public class ArgumentStringTests
     {
-        #region Public Methods
+        #region Tests
 
         [Theory]
         [InlineData(" ")]
@@ -53,8 +53,6 @@ namespace NoSuchCompany.Diagnostics.Tests
             Assert.Throws<ArgumentNullException>(() => Argument.ThrowIfIsNullOrWhiteSpace(inst, "instName"));
         }
 
-        #endregion
-
         [Theory]
         [InlineData(" ", "")]
         [InlineData("", " ")]
@@ -90,6 +88,188 @@ namespace NoSuchCompany.Diagnostics.Tests
         {
             Argument.ThrowIfIsNotEqualTo(inst, otherInst, "instName");
         }
+
+        [Theory]
+        [InlineData(" ", "", StringComparison.CurrentCulture)]
+        [InlineData("", " ", StringComparison.CurrentCulture)]
+        [InlineData("M", "N", StringComparison.CurrentCulture)]
+        [InlineData("M", "m", StringComparison.CurrentCulture)]
+        public void ThrowIfIsEqualToWithStringComparison_InstIsNotEqual_NoExceptionThrown(string inst, string otherInst, StringComparison stringComparison)
+        {
+            Argument.ThrowIfIsEqualTo(inst, otherInst, "instName", stringComparison);
+        }
+
+        [Theory]
+        [InlineData(" ", " ", StringComparison.CurrentCulture)]
+        [InlineData("", "", StringComparison.CurrentCulture)]
+        [InlineData("M", "M", StringComparison.CurrentCulture)]
+        [InlineData("M", "m", StringComparison.CurrentCultureIgnoreCase)]
+        public void ThrowIfIsEqualToWithStringComparison_InstIsEqual_ArgumentExceptionThrown(string inst, string otherInst, StringComparison stringComparison)
+        {
+            Assert.Throws<ArgumentException>(() => Argument.ThrowIfIsEqualTo(inst, otherInst, "instName", stringComparison));
+        }
+
+        [Theory]
+        [InlineData("", "", StringComparison.CurrentCulture)]
+        [InlineData(" ", " ", StringComparison.CurrentCulture)]
+        [InlineData("M", "M", StringComparison.CurrentCulture)]
+        [InlineData("M", "m", StringComparison.CurrentCultureIgnoreCase)]
+        public void ThrowIfIsNotEqualToWithStringComparison_InstIsEqual_NoExceptionThrown(string inst, string otherInst, StringComparison stringComparison)
+        {
+            Argument.ThrowIfIsNotEqualTo(inst, otherInst, "instName", stringComparison);
+        }
+
+        [Theory]
+        [InlineData("", " ", StringComparison.CurrentCulture)]
+        [InlineData("M", "O", StringComparison.CurrentCulture)]
+        [InlineData("M", "m", StringComparison.CurrentCulture)]
+        public void ThrowIfIsNotEqualToWithStringComparison_InstIsNotEqual_ArgumentExceptionThrown(string inst, string otherInst, StringComparison stringComparison)
+        {
+            Assert.Throws<ArgumentException>(() => Argument.ThrowIfIsNotEqualTo(inst, otherInst, "instName", stringComparison));
+        }
+
+        [Theory]
+        [InlineData("", 0)]
+        [InlineData(" ", 1)]
+        public void ThrowIfLengthIsEqualTo_LengthIsEqualTo_ArgumentExceptionThrown(string inst, uint length)
+        {
+            Assert.Throws<ArgumentException>(() => Argument.ThrowIfLengthIsEqualTo(inst, length, "instName"));
+        }
+
+        [Theory]
+        [InlineData("", uint.MaxValue)]
+        [InlineData(" ", uint.MaxValue)]
+        public void ThrowIfLengthIsEqualTo_LengthIsNotEqualTo_NoExceptionThrown(string inst, uint length)
+        {
+            Argument.ThrowIfLengthIsEqualTo(inst, length, "instName");
+        }
+
+        [Theory]
+        [InlineData(null, 1)]
+        public void ThrowIfLengthIsEqualTo_StringIsNull_ArgumentNullExceptionThrown(string inst, uint length)
+        {
+            Assert.Throws<ArgumentNullException>(() => Argument.ThrowIfLengthIsEqualTo(inst, length, "instName"));
+        }
+
+        [Theory]
+        [InlineData(" ", 0)]
+        [InlineData("  ", 1)]
+        public void ThrowIfLengthIsGreaterThan_LengthIsGreaterThan_ArgumentExceptionThrown(string inst, uint length)
+        {
+            Assert.Throws<ArgumentException>(() => Argument.ThrowIfLengthIsGreaterThan(inst, length, "instName"));
+        }
+
+        [Theory]
+        [InlineData("", 0)]
+        [InlineData(" ", 2)]
+        public void ThrowIfLengthIsGreaterThan_LengthIsNotGreaterThan_NoExceptionThrown(string inst, uint length)
+        {
+            Argument.ThrowIfLengthIsGreaterThan(inst, length, "instName");
+        }
+
+        [Theory]
+        [InlineData(null, 0)]
+        public void ThrowIfLengthIsGreaterThan_StringIsNull_ArgumentNullExceptionThrown(string inst, uint length)
+        {
+            Assert.Throws<ArgumentNullException>(() => Argument.ThrowIfLengthIsGreaterThan(inst, length, "instName"));
+        }
+
+        [Theory]
+        [InlineData("", 0)]
+        [InlineData(" ", 0)]
+        [InlineData("  ", 1)]
+        public void ThrowIfLengthIsGreaterThanOrEqualTo_LengthIsGreaterThanOrEqualTo_ArgumentExceptionThrown(string inst, uint length)
+        {
+            Assert.Throws<ArgumentException>(() => Argument.ThrowIfLengthIsGreaterThanOrEqualTo(inst, length, "instName"));
+        }
+
+        [Theory]
+        [InlineData("", 1)]
+        [InlineData(" ", 2)]
+        public void ThrowIfLengthIsGreaterThanOrEqualTo_LengthIsNotGreaterThan_NoExceptionThrown(string inst, uint length)
+        {
+            Argument.ThrowIfLengthIsGreaterThanOrEqualTo(inst, length, "instName");
+        }
+
+        [Theory]
+        [InlineData(null, 0)]
+        public void ThrowIfLengthIsGreaterThanOrEqualTo_StringIsNull_ArgumentNullExceptionThrown(string inst, uint length)
+        {
+            Assert.Throws<ArgumentNullException>(() => Argument.ThrowIfLengthIsGreaterThanOrEqualTo(inst, length, "instName"));
+        }
+
+        [Theory]
+        [InlineData("", 1)]
+        [InlineData(" ", 2)]
+        public void ThrowIfLengthIsLessThan_LengthIsLessThan_ArgumentExceptionThrown(string inst, uint length)
+        {
+            Assert.Throws<ArgumentException>(() => Argument.ThrowIfLengthIsLessThan(inst, length, "instName"));
+        }
+
+        [Theory]
+        [InlineData("", 0)]
+        [InlineData(" ", 0)]
+        [InlineData(" ", 1)]
+        public void ThrowIfLengthIsLessThan_LengthIsNotLessThan_NoExceptionThrown(string inst, uint length)
+        {
+            Argument.ThrowIfLengthIsLessThan(inst, length, "instName");
+        }
+
+        [Theory]
+        [InlineData(null, 0)]
+        public void ThrowIfLengthIsLessThan_StringIsNull_ArgumentNullExceptionThrown(string inst, uint length)
+        {
+            Assert.Throws<ArgumentNullException>(() => Argument.ThrowIfLengthIsLessThan(inst, length, "instName"));
+        }
+
+        [Theory]
+        [InlineData("", 0)]
+        [InlineData("", 1)]
+        [InlineData(" ", 2)]
+        public void ThrowIfLengthIsLessThanOrEqualTo_LengthIsLessThanOrEqualTo_ArgumentExceptionThrown(string inst, uint length)
+        {
+            Assert.Throws<ArgumentException>(() => Argument.ThrowIfLengthIsLessThanOrEqualTo(inst, length, "instName"));
+        }
+
+        [Theory]
+        [InlineData(" ", 0)]
+        [InlineData("  ", 1)]
+        public void ThrowIfLengthIsLessThanOrEqualTo_LengthIsNotLessThan_NoExceptionThrown(string inst, uint length)
+        {
+            Argument.ThrowIfLengthIsLessThanOrEqualTo(inst, length, "instName");
+        }
+
+        [Theory]
+        [InlineData(null, 0)]
+        public void ThrowIfLengthIsLessThanOrEqualTo_StringIsNull_ArgumentNullExceptionThrown(string inst, uint length)
+        {
+            Assert.Throws<ArgumentNullException>(() => Argument.ThrowIfLengthIsLessThanOrEqualTo(inst, length, "instName"));
+        }
+
+        [Theory]
+        [InlineData("", 1)]
+        [InlineData(" ", 0)]
+        public void ThrowIfLengthIsNotEqualTo_LengthIsNotEqualTo_ArgumentExceptionThrown(string inst, uint length)
+        {
+            Assert.Throws<ArgumentException>(() => Argument.ThrowIfLengthIsNotEqualTo(inst, length, "instName"));
+        }
+
+        [Theory]
+        [InlineData("", 0)]
+        [InlineData(" ", 1)]
+        public void ThrowIfLengthIsNotEqualTo_LengthIsEqualTo_NoExceptionThrown(string inst, uint length)
+        {
+            Argument.ThrowIfLengthIsLessThan(inst, length, "instName");
+        }
+
+        [Theory]
+        [InlineData(null, 0)]
+        public void ThrowIfLengthIsNotEqualTo_StringIsNull_ArgumentNullExceptionThrown(string inst, uint length)
+        {
+            Assert.Throws<ArgumentNullException>(() => Argument.ThrowIfLengthIsLessThan(inst, length, "instName"));
+        }
+
+        #endregion
     }
 
     #endregion

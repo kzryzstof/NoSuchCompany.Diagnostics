@@ -3,7 +3,7 @@
 // All rights reserved.
 // May be used only in accordance with a valid Source Code License Agreement.
 // 
-// Last change: 09/09/2018 @ 11:45 AM
+// Last change: 30/12/2018 @ 3:54 PM
 // Last author: Christophe Commeyne
 // ==========================================================================
 
@@ -17,7 +17,7 @@ namespace NoSuchCompany.Diagnostics.Tests
 
     public class ArgumentRefTypeTests
     {
-        #region Public Methods
+        #region Tests
 
         [Fact]
         public void ThrowIfIsNotNull_InstIsNotNull_ArgumentExceptionThrown()

@@ -3,7 +3,7 @@
 // All rights reserved.
 // May be used only in accordance with a valid Source Code License Agreement.
 // 
-// Last change: 09/09/2018 @ 8:17 AM
+// Last change: 30/12/2018 @ 3:18 PM
 // Last author: Christophe Commeyne
 // ==========================================================================
 
@@ -16,7 +16,7 @@ namespace NoSuchCompany.Diagnostics.Tests
 
     public class ArgumentGuidTests
     {
-        #region Public Methods
+        #region Tests
 
         [Fact]
         public void ThrowIfIsEmpty_GuidIsEmpty_ArgumentExceptionThrown()

@@ -3,7 +3,7 @@
 // All rights reserved.
 // May be used only in accordance with a valid Source Code License Agreement.
 // 
-// Last change: 08/09/2018 @ 10:24 AM
+// Last change: 30/12/2018 @ 3:51 PM
 // Last author: Christophe Commeyne
 // ==========================================================================
 
@@ -21,6 +21,10 @@ namespace NoSuchCompany.Diagnostics
     {
         #region Public Methods
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentException" /> if the specified <paramref name="inst" />
+        /// is equal to the <paramref name="otherInst" />.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="otherInst">Other instance</param>
         /// <param name="instName">The name of the instance</param>
@@ -36,6 +40,10 @@ namespace NoSuchCompany.Diagnostics
                 throw new ArgumentException(instName, $"{instName} is equal to {otherInst}.");
         }
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentException" /> if the specified <paramref name="inst" />
+        /// is equal to the <paramref name="otherInst" />.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="otherInst">Other instance</param>
         /// <param name="instName">The name of the instance</param>
@@ -50,6 +58,10 @@ namespace NoSuchCompany.Diagnostics
                 throw new ArgumentException(instName, $"{instName} is equal to {otherInst}.");
         }
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentException" /> if the specified <paramref name="inst" />
+        /// is not equal to the <paramref name="otherInst" />.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="otherInst">Other instance</param>
         /// <param name="instName">The name of the instance</param>
@@ -65,6 +77,10 @@ namespace NoSuchCompany.Diagnostics
                 throw new ArgumentException(instName, $"{instName} is not equal to {otherInst}.");
         }
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentException" /> if the specified <paramref name="inst" />
+        /// is not equal to the <paramref name="otherInst" />.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="otherInst">Other instance</param>
         /// <param name="instName">The name of the instance</param>
@@ -79,6 +95,10 @@ namespace NoSuchCompany.Diagnostics
                 throw new ArgumentException(instName, $"{instName} is not equal to {otherInst}.");
         }
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentNullException" /> if the specified <paramref name="inst" />
+        /// is null or an empty <see cref="String" />.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="instName">The name of the instance.</param>
         /// <exception cref="ArgumentNullException">
@@ -92,6 +112,10 @@ namespace NoSuchCompany.Diagnostics
                 throw new ArgumentNullException(instName, $"{instName} is not allowed to be null or empty.");
         }
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentNullException" /> if the specified <paramref name="inst" />
+        /// is null or a <see cref="String" /> with blank characters.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="instName">The name of the instance.</param>
         /// <exception cref="ArgumentNullException">
@@ -105,6 +129,10 @@ namespace NoSuchCompany.Diagnostics
                 throw new ArgumentNullException(instName, $"{instName} is not allowed to be null or white spaced.");
         }
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentException" /> if the length of the specified <paramref name="inst" />
+        /// is equal to the specified <paramref name="length" />.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="length">The length of the string instance.</param>
         /// <param name="instName">The name of the instance</param>
@@ -127,6 +155,10 @@ namespace NoSuchCompany.Diagnostics
                 throw new ArgumentException(instName, $"The length {instName} is equal to {length}.");
         }
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentException" /> if the length of the specified <paramref name="inst" />
+        /// is greater than the specified <paramref name="length" />.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="length">The length of the string instance.</param>
         /// <param name="instName">The name of the instance</param>
@@ -149,6 +181,10 @@ namespace NoSuchCompany.Diagnostics
                 throw new ArgumentException(instName, $"The length {instName} is greater than {length}: {inst.Length}.");
         }
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentException" /> if the length of the specified <paramref name="inst" />
+        /// is greater than or equal to the specified <paramref name="length" />.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="length">The length of the string instance.</param>
         /// <param name="instName">The name of the instance</param>
@@ -171,6 +207,10 @@ namespace NoSuchCompany.Diagnostics
                 throw new ArgumentException(instName, $"The length {instName} is greater than or equal to {length}: {inst.Length}.");
         }
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentException" /> if the length of the specified <paramref name="inst" />
+        /// is less than the specified <paramref name="length" />.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="length">The length of the string instance.</param>
         /// <param name="instName">The name of the instance</param>
@@ -193,6 +233,10 @@ namespace NoSuchCompany.Diagnostics
                 throw new ArgumentException(instName, $"The length {instName} is less than {length}: {inst.Length}.");
         }
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentException" /> if the length of the specified <paramref name="inst" />
+        /// is less than or equal to the specified <paramref name="length" />.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="length">The length of the string instance.</param>
         /// <param name="instName">The name of the instance</param>
@@ -215,6 +259,10 @@ namespace NoSuchCompany.Diagnostics
                 throw new ArgumentException(instName, $"The length {instName} is less than or equal to {length}: {inst.Length}.");
         }
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentException" /> if the length of the specified <paramref name="inst" />
+        /// is not equal to the specified <paramref name="length" />.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="length">The length of the string instance.</param>
         /// <param name="instName">The name of the instance</param>
