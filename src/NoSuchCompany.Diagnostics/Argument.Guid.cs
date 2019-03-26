@@ -21,6 +21,10 @@ namespace NoSuchCompany.Diagnostics
     {
         #region Public Methods
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentException"/> if the <paramref name="inst"/>
+        /// is equal to <see cref="Guid.Empty"/>
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="instName">The name of the instance.</param>
         /// <exception cref="ArgumentException">
@@ -34,6 +38,10 @@ namespace NoSuchCompany.Diagnostics
                 throw new ArgumentException(instName, $"{instName} is empty.");
         }
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentException"/> if the <paramref name="inst"/>
+        /// is equal to <paramref name="otherInst"/>.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="otherInst">The other instance to compare against.</param>
         /// <param name="instName">The name of the instance.</param>
@@ -48,6 +56,10 @@ namespace NoSuchCompany.Diagnostics
                 throw new ArgumentException(instName, $"{instName} is equal to {otherInst}.");
         }
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentException"/> if the <paramref name="inst"/>
+        /// is not equal to <paramref name="otherInst"/>.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="otherInst">The other instance to compare against.</param>
         /// <param name="instName">The name of the instance.</param>

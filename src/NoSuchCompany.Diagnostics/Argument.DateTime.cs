@@ -21,6 +21,10 @@ namespace NoSuchCompany.Diagnostics
     {
         #region Public Methods
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentException"/> if the <paramref name="inst"/>
+        /// is not specified in a Local time zone.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="instName">The name of the instance.</param>
         /// <exception cref="ArgumentException">
@@ -33,7 +37,11 @@ namespace NoSuchCompany.Diagnostics
             if (inst.Kind != DateTimeKind.Local)
                 throw new ArgumentException(instName, $"{instName} is not expressed in a local time-zone.");
         }
-
+        
+        /// <summary>
+        /// Throws an <see cref="ArgumentException"/> if the <paramref name="inst"/>
+        /// is not specified in the UTC time zone.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="instName">The name of the instance.</param>
         /// <exception cref="ArgumentException">
@@ -47,6 +55,10 @@ namespace NoSuchCompany.Diagnostics
                 throw new ArgumentException(instName, $"{instName} is not expressed in the UTC time-zone.");
         }
 
+        /// <summary>
+        /// Throws an <see cref="ArgumentException"/> if the <paramref name="inst"/>
+        /// is not specified in an Unspecified time zone.
+        /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="instName">The name of the instance.</param>
         /// <exception cref="ArgumentException">
