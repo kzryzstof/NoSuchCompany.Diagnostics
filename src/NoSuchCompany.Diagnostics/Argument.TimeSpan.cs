@@ -22,6 +22,42 @@ namespace NoSuchCompany.Diagnostics
         #region Public Methods
 
         /// <summary>
+        /// Throws an <see cref="ArgumentException" /> if the specified <paramref name="inst" />
+        /// is equal to the <paramref name="otherInst" />.
+        /// </summary>
+        /// <param name="inst">The instance to validate.</param>
+        /// <param name="otherInst">Other instance to compare.</param>
+        /// <param name="instName">The name of the instance.</param>
+        /// <exception cref="ArgumentException">
+        /// Thrown if :
+        /// <paramref name="inst" /> is equal ton <paramref name="otherInst" />.
+        /// </exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void ThrowIfIsEqual(TimeSpan inst, TimeSpan otherInst, string instName)
+        {
+            if (inst == otherInst)
+                throw new ArgumentException(instName, $"{instName} is equal to {otherInst}. (Value={inst}).");
+        }
+        
+        /// <summary>
+        /// Throws an <see cref="ArgumentException" /> if the specified <paramref name="inst" />
+        /// is not equal to the <paramref name="otherInst" />.
+        /// </summary>
+        /// <param name="inst">The instance to validate.</param>
+        /// <param name="otherInst">Other instance to compare.</param>
+        /// <param name="instName">The name of the instance.</param>
+        /// <exception cref="ArgumentException">
+        /// Thrown if :
+        /// <paramref name="inst" /> is not equal to <paramref name="otherInst" />.
+        /// </exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void ThrowIfIsNotEqual(TimeSpan inst, TimeSpan otherInst, string instName)
+        {
+            if (inst != otherInst)
+                throw new ArgumentException(instName, $"{instName} is not equal to {otherInst}. (Value={inst}).");
+        }
+        
+        /// <summary>
         /// Throws an <see cref="ArgumentOutOfRangeException" /> if the specified <paramref name="inst" />
         /// is greater than the <paramref name="upperBound" />.
         /// </summary>

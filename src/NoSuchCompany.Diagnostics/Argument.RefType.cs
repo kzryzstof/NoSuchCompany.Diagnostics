@@ -41,7 +41,7 @@ namespace NoSuchCompany.Diagnostics
 
         /// <summary>
         /// Throws an <see cref="ArgumentException" /> if the <paramref name="inst" />
-        /// does not match the specified <paramref name="{TExpectedType}"></paramref>.
+        /// does not match the specified <typeref name="{TExpectedType}"></typeref>.
         /// </summary>
         /// <param name="inst">The instance to validate.</param>
         /// <param name="instName">The name of the instance.</param>
