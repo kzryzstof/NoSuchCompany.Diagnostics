@@ -2,9 +2,9 @@
 
 ![Build status](https://nosuchcompany.visualstudio.com/NoSuchCompany.Diagnostics/_apis/build/status/NoSuchCompany.Diagnostics-master?branch=master)
 
-The Diagnostics library provides simple and light classes that help checking incoming parameters of a method using the Fluent API or not, depending on what you prefer.
+The Diagnostics library provides simple and light classes that help checking incoming parameters of a method.
 
-The library is provided as a .netstandard2.0 DLL so that it can be used in .NET Framework projects (4.6.1) as well as in .NET Core applications. The choice is yours.
+The library is provided as a `.netstandard 2.0` DLL so that it can be used in .NET Framework projects (4.6.1) as well as in .NET Core applications. The choice is yours.
 
 
 # Getting Started #
@@ -37,26 +37,6 @@ namespace Application
 }
 ```
 
-3. Or use the Fluent approach:
-
-```csharp
-using NoSuchCompany.Diagnostics.Guards;
-
-namespace Application
-{
-    public class SomeClass
-    {
-        public SomeClass(string name, Datetime timestampUtc, Socket someSocket)
-        {
-            name.ThrowIfIsEmpty(nameof(name));
-            timestampUtc.ThrowIfIsNotUtc(nameof(timestampUtc));
-            someSocket.ThrowIfIsNull(nameof(someSocket));
-            
-            //  ...            
-        }
-    }
-}
-```
 
 
 # Features #
